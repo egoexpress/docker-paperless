@@ -21,7 +21,7 @@ services:
       MARIADB_USER: paperless
 
   app:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.11
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.12
     restart: unless-stopped
     depends_on:
       - db
