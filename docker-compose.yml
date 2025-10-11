@@ -44,7 +44,6 @@ services:
       - /repos/docker-paperless/export:/usr/src/paperless/export
       - /repos/docker-paperless/consume:/usr/src/paperless/consume
       - nextcloud_nextcloud:/nextcloud
-    env_file: docker-compose.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBENGINE: mariadb
