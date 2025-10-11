@@ -19,6 +19,8 @@ services:
       MARIADB_HOST: paperless
       MARIADB_DATABASE: paperless
       MARIADB_USER: paperless
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
 
   app:
     image: ghcr.io/paperless-ngx/paperless-ngx:2.18
@@ -39,8 +41,9 @@ services:
     volumes:
       - data:/usr/src/paperless/data
       - media:/usr/src/paperless/media
-      - ./export:/usr/src/paperless/export
-      - ./consume:/usr/src/paperless/consume
+      - /repos/docker-paperless/export:/usr/src/paperless/export
+      - /repos/docker-paperless/consume:/usr/src/paperless/consume
+      - nextcloud_nextcloud:/nextcloud
     env_file: docker-compose.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
@@ -51,6 +54,18 @@ services:
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      VIRTUAL_PORT: 8000
+      PAPERLESS_DBPASS: ${PAPERLESS_DBPASS}
+      LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      PAPERLESS_CONSUMPTION_DIR: ${PAPERLESS_CONSUMPTION_DIR}
+      USERMAP_UID: 33
+      USERMAP_GID: 33
+      PAPERLESS_URL: ${PAPERLESS_URL}
+      PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
+      PAPERLESS_TIME_ZONE: ${PAPERLESS_TIME_ZONE}
+      PAPERLESS_OCR_LANGUAGE: deu
 
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.24
@@ -73,7 +88,11 @@ volumes:
   media:
   db:
   redis:
+  nextcloud_nextcloud:
+    external: true
 
 networks:
   frontend:
+    name: proxy_frontend
+    external: true
   backend:
