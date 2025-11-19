@@ -1,7 +1,7 @@
 services:
   
   broker:
-    image: docker.io/library/redis:8.2
+    image: docker.io/library/redis:8.4
     restart: unless-stopped
     volumes:
       - redis:/data
