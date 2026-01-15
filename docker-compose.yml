@@ -87,8 +87,8 @@ volumes:
   media:
   db:
   redis:
-  nextcloud_nextcloud:
-    external: true
+  # nextcloud_nextcloud:
+  #  external: true
 
 networks:
   frontend:
