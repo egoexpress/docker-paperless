@@ -67,7 +67,7 @@ services:
       PAPERLESS_OCR_LANGUAGE: deu
 
   gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.26
+    image: docker.io/gotenberg/gotenberg:8.27
     restart: unless-stopped
     command:
       - "gotenberg"
