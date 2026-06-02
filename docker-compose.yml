@@ -9,7 +9,7 @@ services:
       - backend
 
   db:
-    image: docker.io/library/mariadb:12.2
+    image: docker.io/library/mariadb:12.3
     restart: unless-stopped
     volumes:
       - db:/var/lib/mysql
