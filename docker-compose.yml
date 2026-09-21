@@ -65,6 +65,7 @@ services:
       PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
       PAPERLESS_TIME_ZONE: ${PAPERLESS_TIME_ZONE}
       PAPERLESS_OCR_LANGUAGE: deu
+      PAPERLESS_CONSUMER_DELETE_DUPLICATES: true
 
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.37
